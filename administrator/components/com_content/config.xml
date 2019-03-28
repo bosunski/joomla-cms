@@ -1048,4 +1048,76 @@
 			section="component"
 		/>
 	</fieldset>
+	<fieldset
+		name="seo"
+		label="JCONFIG_SEO_LABEL"
+		description="JCONFIG_SEO_DESCRIPTION"
+	>
+		<field
+			name="site_type"
+			type="radio"
+			label="JCONFIG_SITE_TYPE_LABEL"
+			component="com_content"
+			section="component"
+		>
+		<option value="blog">Blog</option>
+		<option value="shop">Shop</option>
+		<option value="news">News Channel</option>
+		<option value="business">Offline Business</option>
+		<option value="corporation">Corporation</option>
+		<option value="portfolio">Portfolio</option>
+		<option value="something_else">Something Else</option>
+		</field>
+
+		<field
+			name="owner_type"
+			type="radio"
+			label="Type of Owner"
+			component="com_content"
+			section="component"
+		>
+		<option value="person">Person</option>
+		<option value="organization">Organization</option>
+		</field>
+
+		<field
+			name="owner_name"
+			type="text"
+			label="Name of Owner"
+			component="com_content"
+			section="component"
+		/>
+
+		<fieldgroup
+		name="social_links">
+			<field
+					name="twitter_handle"
+					type="text"
+					label="Twitter Handle"
+					component="com_content"
+					section="component"
+			/>
+
+			<field
+					name="facebook"
+					type="text"
+					label="Facebook Link"
+					component="com_content"
+					section="component"
+			/>
+
+		</fieldgroup>
+
+		<field
+				name="multiple_authors"
+				type="radio"
+				class="switcher"
+				label="Multiple Authors"
+				component="com_content"
+				section="component"
+		>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
 </config>

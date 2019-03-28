@@ -362,6 +362,8 @@ class HtmlView extends BaseHtmlView
 			$this->document->setMetaData('author', $author);
 		}
 
+		$this->document = Factory::getApplication()->triggerEvent('onAfterLegacyMetaGeneration', array('com_content.article', &$this->document, $this->item))[0];
+
 		$mdata = $this->item->metadata->toArray();
 
 		foreach ($mdata as $k => $v)

@@ -921,6 +921,36 @@
 				size="20"
 			/>
 
+			<fieldgroup name="ogpg"
+					  label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
+
+				<field
+						name="twitter_title"
+						type="text"
+						label="COM_CONTENT_TWITTER_CARD_TITLE_LABEL"
+						description="COM_CONTENT_TWITTER_CARD_TITLE_DESCRIPTION"
+						size="20"
+				/>
+
+				<field
+						name="twitter_description"
+						type="textarea"
+						label="COM_CONTENT_TWITTER_CARD_DESCRIPTION_LABEL"
+						description="COM_CONTENT_TWITTER_CARD_DESCRIPTION_DESCRIPTION"
+						filter="string"
+						cols="30"
+						rows="2"
+				/>
+
+				<field
+						name="twitter_image"
+						type="media"
+						label="COM_CONTENT_TWITTER_CARD_IMAGE_LABEL"
+						description="COM_CONTENT_TWITTER_CARD_IMAGE_DESCRIPTION"
+				/>
+
+			</fieldgroup>
+
 		</fieldset>
 	</fields>
 	<!-- These fields are used to get labels for the Content History Preview and Compare Views -->
