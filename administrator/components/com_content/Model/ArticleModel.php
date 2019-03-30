@@ -474,6 +474,7 @@ class ArticleModel extends AdminModel
 			// Convert the metadata field to an array.
 			$registry = new Registry($item->metadata);
 			$item->metadata = $registry->toArray();
+			$item->ogpg = $registry->toArray()['ogpg'];
 
 			// Convert the images field to an array.
 			$registry = new Registry($item->images);
@@ -749,6 +750,11 @@ class ArticleModel extends AdminModel
 		if (isset($data['metadata']) && isset($data['metadata']['author']))
 		{
 			$data['metadata']['author'] = $filter->clean($data['metadata']['author'], 'TRIM');
+		}
+
+		if (isset($data['ogpg']))
+		{
+			$data['metadata']['ogpg'] = $data['ogpg'];
 		}
 
 		if (isset($data['created_by_alias']))

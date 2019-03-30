@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+
+	<name>Hotel</name>
+	<!-- The following elements are optional and free of formatting constraints -->
+	<creationDate>February 2018</creationDate>
+	<author>Hiago Oliveira</author>
+	<authorEmail>example@mail.com</authorEmail>
+	<authorUrl>http://www.example.org</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>
+	<!--  The version string is recorded in the components table -->
+	<version>0.0.1</version>
+	<description>
+        Small hotel mvc component to get to know the code base.
+    </description>
+
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update> <!-- Runs on update; New since J2.5 -->
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<!-- Site Main File Copy Section -->
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu link='index.php?option=com_hotel'>COM_HOTEL_MENU_NAME</menu>
+		<submenu>
+			<menu link="option=com_hotel&amp;view=guests">COM_HOTEL_SUBMENU_GUESTS</menu>
+			<menu link="option=com_hotel&amp;view=reservations">COM_HOTEL_SUBMENU_RESERVATIONS</menu>
+			<menu link="option=com_hotel&amp;view=rooms">COM_HOTEL_SUBMENU_ROOMS</menu>
+		</submenu>
+
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<filename>index.html</filename>
+			<filename>hotel.php</filename>
+			<filename>controller.php</filename>
+			<!-- Folders section -->
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB.com_hotel.ini</language>
+			<language tag="en-GB">language/en-GB.com_hotel.sys.ini</language>
+		</languages>
+	</administration>
+
+</extension>

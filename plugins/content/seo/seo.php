@@ -69,6 +69,7 @@ class PlgContentSeo extends CMSPlugin
 	public function onAfterLegacyMetaGeneration($context, $document, $item): HtmlDocument
 	{
 		$this->config = $this->getContentConfig();
+
 		$this->setTwitterCards($document, $item)
 			->setFacebookOgpg($document, $item)
 			->addSchemaContext($document);
@@ -149,9 +150,9 @@ class PlgContentSeo extends CMSPlugin
 	 */
 	protected function getSchemaScript(): string
 	{
-		$template = <<< REGEXP
+		$template = <<< EOO
 		{"@context":"https://schema.org","@type":"@site_type","url":"@url","sameAs":\["@facebook_link","https://twitter.com/@twitter_handle"],"@id":"#person","name":"@owner_name"}
-REGEXP;
+EOO;
 		$template = str_replace('@twitter_handle', $this->getTwitterHandle(), $template);
 		$template = str_replace('@site_type', $this->config->site_type, $template);
 		$template = str_replace('@facebook_link', $this->config->facebook, $template);

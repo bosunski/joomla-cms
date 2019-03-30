@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field
+            name="id"
+            type="text"
+            label="COM_HOTEL_RESERVATION_FIELD_ID_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_ID_DESC"
+            filter="INTEGER"
+            class="readonly"
+            readonly="true"
+        />
+
+        <field
+            name="guest_id"
+            type="sql"
+            default=""
+            label="COM_HOTEL_RESERVATION_FIELD_GUEST_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_GUEST_DESC"
+            query="SELECT id, name FROM #__hotel_guest"
+            key_field="id"
+            value_field="name"
+        />
+
+        <field
+            name="checkin_date"
+            type="calendar"
+            label="COM_HOTEL_RESERVATION_FIELD_CHECKIN_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_CHECKIN_LABEL"
+            class="input-medium"
+            required="true"
+            default="NOW"
+            filter="user_utc"
+            singleheader="true"
+            showtime="true"
+            timeformat="24"
+            todaybutton="true"
+            filltable="true"
+            minyear="0"
+            maxyear="1"
+        />
+
+        <field name="checkout_date"
+            type="calendar"
+            label="COM_HOTEL_RESERVATION_FIELD_CHECKOUT_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_CHECKOUT_LABEL"
+            class="input-medium"
+            required="true"
+            default="NOW"
+            filter="user_utc"
+            singleheader="true"
+            showtime="true"
+            timeformat="24"
+            todaybutton="true"
+            filltable="true"
+            minyear="0"
+            maxyear="1"
+        />
+
+        <field
+            name="room_id"
+            type="floor"
+            default="0"
+            label="COM_HOTEL_RESERVATION_FIELD_FLOOR_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_FLOOR_DESC"
+        />
+
+        <field
+            name="obs"
+            type="textarea"
+            default=""
+            label="COM_HOTEL_RESERVATION_FIELD_OBS_LABEL"
+            description="COM_HOTEL_RESERVATION_FIELD_OBS_DESC"
+            rows="10"
+            cols="60"
+        />
+
+        <field type="spacer"
+            name="myspacer"
+            hr="true"
+        />
+    </fieldset>
+
+</form>

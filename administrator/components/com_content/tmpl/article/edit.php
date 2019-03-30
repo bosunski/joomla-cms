@@ -101,6 +101,19 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 		<?php endif; ?>
 
+		<?php if ($params->get('show_publishing_options', 1) == 1) : ?>
+			<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'seo', Text::_('SEO')); ?>
+			<div class="row">
+				<div class="col-md-6">
+					<?php echo LayoutHelper::render('joomla.edit.ogpg', $this); ?>
+				</div>
+				<div class="col-md-6">
+					<?php echo LayoutHelper::render('joomla.edit.serp_preview', $this); ?>
+				</div>
+			</div>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+		<?php endif; ?>
+
 		<?php if ( ! $isModal && $assoc) : ?>
 			<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'associations', Text::_('JGLOBAL_FIELDSET_ASSOCIATIONS')); ?>
 			<?php echo $this->loadTemplate('associations'); ?>

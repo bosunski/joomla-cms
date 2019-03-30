@@ -33,11 +33,16 @@ $fieldSets = $form->getFieldsets('metadata');
 		echo $form->renderField('xreference');
 	}
 
-	foreach ($form->getFieldset($name) as $field)
+	if ($name !== 'ogpg')
 	{
-		if ($field->name !== 'jform[metadata][tags][]')
+		foreach ($form->getFieldset($name) as $field)
 		{
-			echo $field->renderField();
+			if ($field->name !== 'jform[metadata][tags][]')
+			{
+				echo $field->renderField();
+			}
 		}
-	} ?>
+	}
+
+	?>
 <?php endforeach; ?>

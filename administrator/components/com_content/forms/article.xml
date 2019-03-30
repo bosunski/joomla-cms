@@ -921,38 +921,9 @@
 				size="20"
 			/>
 
-			<fieldgroup name="ogpg"
-					  label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
-
-				<field
-						name="twitter_title"
-						type="text"
-						label="COM_CONTENT_TWITTER_CARD_TITLE_LABEL"
-						description="COM_CONTENT_TWITTER_CARD_TITLE_DESCRIPTION"
-						size="20"
-				/>
-
-				<field
-						name="twitter_description"
-						type="textarea"
-						label="COM_CONTENT_TWITTER_CARD_DESCRIPTION_LABEL"
-						description="COM_CONTENT_TWITTER_CARD_DESCRIPTION_DESCRIPTION"
-						filter="string"
-						cols="30"
-						rows="2"
-				/>
-
-				<field
-						name="twitter_image"
-						type="media"
-						label="COM_CONTENT_TWITTER_CARD_IMAGE_LABEL"
-						description="COM_CONTENT_TWITTER_CARD_IMAGE_DESCRIPTION"
-				/>
-
-			</fieldgroup>
-
 		</fieldset>
 	</fields>
+
 	<!-- These fields are used to get labels for the Content History Preview and Compare Views -->
 	<fields>
 		<field
@@ -966,5 +937,87 @@
 		/>
 	</fields>
 
+	<fields name="ogpg" label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
+		<fieldgroup name="ogpg"
+				  label="SEO">
+
+			<field
+					name="canonical_url"
+					type="text"
+					label="Canonical URL Override"
+					description="Override Canonical URL"
+					size="20"
+			/>
+
+			<field
+					name="seo_title"
+					type="text"
+					label="Title"
+					description="Title you want to use for SEO"
+					size="20"
+			/>
+
+			<field
+					name="seo_description"
+					type="textarea"
+					label="Description"
+					description="Description for SEO"
+					filter="string"
+					cols="30"
+					rows="2"
+			/>
+
+			<field
+					name="og_title"
+					type="text"
+					label="OG Title"
+					description="Title Override for OG"
+					size="20"
+			/>
+
+			<field
+					name="og_description"
+					type="textarea"
+					label="OG Description"
+					description="Description Override for Description"
+					filter="string"
+					cols="30"
+					rows="2"
+			/>
+
+			<field
+					name="og_image"
+					type="media"
+					label="OG Image"
+					description="Image Override for OG"
+			/>
+
+			<field
+					name="twitter_title"
+					type="text"
+					label="COM_CONTENT_TWITTER_CARD_TITLE_LABEL"
+					description="COM_CONTENT_TWITTER_CARD_TITLE_DESCRIPTION"
+					size="20"
+			/>
+
+			<field
+					name="twitter_description"
+					type="textarea"
+					label="COM_CONTENT_TWITTER_CARD_DESCRIPTION_LABEL"
+					description="COM_CONTENT_TWITTER_CARD_DESCRIPTION_DESCRIPTION"
+					filter="string"
+					cols="30"
+					rows="2"
+			/>
+
+			<field
+					name="twitter_image"
+					type="media"
+					label="COM_CONTENT_TWITTER_CARD_IMAGE_LABEL"
+					description="COM_CONTENT_TWITTER_CARD_IMAGE_DESCRIPTION"
+			/>
+
+		</fieldgroup>
+	</fields>
 </form>
 

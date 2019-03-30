@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field
+                name="search"
+                type="text"
+                label="COM_HOTEL_FILTER_SEARCH_LABEL"
+                hint="JSEARCH_FILTER"
+
+        />
+        <field
+                name="published"
+                type="status"
+                label="JOPTION_SELECT_PUBLISHED"
+                statuses="0,1"
+                description="JOPTION_SELECT_PUBLISHED_DESC"
+                onchange="this.form.submit();"
+        >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+    </fields>
+    <fields name="list">
+
+        <field
+                name="limit"
+                type="limitbox"
+                class="inputbox input-mini"
+                default="25"
+                label="COM_HOTEL_LIST_LIMIT_LABEL"
+                description="COM_HOTEL_LIST_LIMIT_DESC"
+                onchange="this.form.submit();"
+        />
+    </fields>
+</form>
