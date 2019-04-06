@@ -38,6 +38,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Language;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Table\CoreContent;
 use Joomla\CMS\User\User;
 use Joomla\CMS\Workflow\Workflow;
@@ -69,10 +70,12 @@ class PlgContentSeo extends CMSPlugin
 	public function onAfterLegacyMetaGeneration($context, $document, $item): HtmlDocument
 	{
 		$this->config = $this->getContentConfig();
+		$this->ogpg = (array)$item->metadata->get('ogpg');
 
 		$this->setTwitterCards($document, $item)
 			->setFacebookOgpg($document, $item)
-			->addSchemaContext($document);
+			->addSchemaContext($document, $item)
+			->setCanonicalURL($document, $item);
 
 		return $document;
 	}
@@ -87,10 +90,29 @@ class PlgContentSeo extends CMSPlugin
 	 */
 	protected function setTwitterCards(&$document, $item): self
 	{
-		if (!empty($item->metadata['twitter_title']))
-			$document->setMetaData('twitter:title', $item->metadata['twitter_title']);
-		if (!empty($item->metadata['twitter_description']))
-			$document->setMetaData('twitter:description', $item->metadata['twitter_description']);
+		/**
+		 * <!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="{{ $page->meta->twitter->site }}">
+		<meta name="twitter:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}">
+		<meta name="twitter:creator" content="{{ $page->meta->twitter->creator }}">
+		<meta name="twitter:description" content="{{ $page->getExcerpt() }}">
+		<meta name="twitter:image:src" content="{{ $page->cover_image ? $page->cover_image : $page->defaultImage }}">
+		<meta name="twitter:domain" content="{{ $page->meta->twitter->domain }}">
+		 */
+		$document->setMetaData('twitter:card', "summary");
+		$document->setMetaData('twitter:site', "@".$this->config->twitter_handle);
+
+		if (!empty($this->ogpg['twitter_title']))
+			$document->setMetaData('twitter:title', $this->ogpg['twitter_title']);
+
+		$document->setMetaData('twitter:creator', "@".$this->config->twitter_handle);
+
+		if (!empty($this->ogpg['twitter_description']))
+			$document->setMetaData('twitter:description', $this->ogpg['twitter_description']);
+
+		$document->setMetaData('twitter:image:src', "@".$this->config->twitter_handle);
+		$document->setMetaData('twitter:domain', "@".$this->config->twitter_handle);
 
 		return $this;
 	}
@@ -105,6 +127,39 @@ class PlgContentSeo extends CMSPlugin
 	 */
 	protected function setFacebookOgpg(&$document, $item): self
 	{
+		/**
+		 * <meta property="og:type" content="article"/>
+		<meta property="og:description" content="{{ $page->getExcerpt() }}"/>
+		<meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}"/>
+		<meta property="og:site_name" content="{{ $page->siteName }}"/>
+		<meta property="og:image" content="{{ $page->cover_image ? $page->cover_image : $page->defaultImage }}" />
+		<meta property="og:image:type" content="{{ $page->meta->facebook->image->type }}" />
+		<meta property="og:image:width" content="{{ $page->meta->facebook->image->width }}" />
+		<meta property="og:image:height" content="{{ $page->meta->facebook->image->height }}" />
+		<meta property="og:url" content="{{ $page->getUrl() }}">
+
+		<meta property="og:locale" content="{{ $page->meta->facebook->locale ? $page->meta->facebook->locale : 'en_US' }}">
+		 */
+
+		$document->setMetaData('og:type', "article");
+		if (!empty($this->ogpg['facebook_title']))
+			$document->setMetaData('og:title', $this->ogpg['facebook_title']);
+
+		$document->setMetaData('og:author', $this->config->facebook);
+
+		if (!empty($this->ogpg['og_description']))
+			$document->setMetaData('og:description', $this->ogpg['og_description']);
+
+		return $this;
+	}
+
+	protected function setCanonicalURL(HtmlDocument &$document, $item): self
+	{
+		if (isset($this->ogpg['canonical_url']))
+			$document->setMetaData('canonical', $this->ogpg['canonical_url']);
+		else
+			$document->setMetaData('canonical', Route::_(''));
+
 		return $this;
 	}
 
@@ -135,7 +190,7 @@ class PlgContentSeo extends CMSPlugin
 	 *
 	 * @since version
 	 */
-	protected function addSchemaContext(HtmlDocument &$document): self
+	protected function addSchemaContext(HtmlDocument &$document, $item): self
 	{
 		$document->addScriptDeclaration($this->getSchemaScript(), 'application/ld+json');
 

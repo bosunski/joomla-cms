@@ -941,25 +941,28 @@
 		<fieldgroup name="ogpg"
 				  label="SEO">
 
-			<field
-					name="canonical_url"
-					type="text"
-					label="Canonical URL Override"
-					description="Override Canonical URL"
-					size="20"
-			/>
+			<!--<field-->
+					<!--name="canonical_url"-->
+					<!--type="text"-->
+					<!--label="Canonical URL Override"-->
+					<!--description="Override Canonical URL"-->
+					<!--size="20"-->
+			<!--/>-->
 
 			<field
 					name="seo_title"
-					type="text"
+					type="vmodel"
+					vmodel="articleTitle"
 					label="Title"
+					baron="title"
 					description="Title you want to use for SEO"
 					size="20"
 			/>
 
 			<field
 					name="seo_description"
-					type="textarea"
+					type="vtextarea"
+					vmodel="articleDescription"
 					label="Description"
 					description="Description for SEO"
 					filter="string"

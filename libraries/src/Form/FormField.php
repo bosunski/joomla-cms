@@ -599,7 +599,7 @@ abstract class FormField
 		$attributes = array(
 			'multiple', 'name', 'id', 'hint', 'class', 'description', 'labelclass', 'onchange', 'onclick', 'validate', 'pattern', 'validationtext',
 			'default', 'required', 'disabled', 'readonly', 'autofocus', 'hidden', 'autocomplete', 'spellcheck', 'translateHint', 'translateLabel',
-			'translate_label', 'translateDescription', 'translate_description', 'size', 'showon');
+			'translate_label', 'translateDescription', 'translate_description', 'size', 'showon', 'baron');
 
 		$this->default = isset($element['value']) ? (string) $element['value'] : $this->default;
 
@@ -608,7 +608,7 @@ abstract class FormField
 		{
 			$this->value = (array) json_decode($value);
 		}
-		else 
+		else
 		{
 			$this->value = $value;
 		}
@@ -952,6 +952,12 @@ abstract class FormField
 		{
 			$options['hiddenLabel'] = true;
 		}
+
+//		if ($this->getAttribute('v-model'))
+//		{
+			$options['baron'] = "title";
+//		}
+
 
 		if ($this->showon)
 		{

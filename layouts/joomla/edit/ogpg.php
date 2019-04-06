@@ -25,6 +25,7 @@ $fieldSets = $form->getGroup('ogpg');
 	<?php endif; ?>
 
 	<?php
+//		echo $name;
 		echo $fieldSet->renderField();
 	?>
 <?php endforeach; ?>

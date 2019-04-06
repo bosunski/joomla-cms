@@ -21,6 +21,7 @@ use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Uri\Uri;
 use Joomla\Component\Content\Administrator\Helper\PreviewHelper;
 
 /**
@@ -109,6 +110,17 @@ class HtmlView extends BaseHtmlView
 
 		$this->addToolbar();
 
+		HTMLHelper::_('behavior.core');
+		HTMLHelper::_('behavior.keepalive');
+
+		$this->document->addScript('https://cdn.jsdelivr.net/npm/vue/dist/vue.js');
+		$this->document->addScriptOptions('seo', [
+			'article' => $this->item,
+		]);
+
+		$this->document->addScript("/administrator/templates/atum/article.js");
+		$this->document->addStyleSheet("/administrator/templates/atum/css/article.css");
+
 		return parent::display($tpl);
 	}
 
@@ -142,7 +154,7 @@ class HtmlView extends BaseHtmlView
 		if ($isNew && (count($user->getAuthorisedCategories('com_content', 'core.create')) > 0))
 		{
 			$apply = $toolbar->apply('article.apply');
-			
+
 			$saveGroup = $toolbar->dropdownButton('save-group');
 
 			$saveGroup->configure(
